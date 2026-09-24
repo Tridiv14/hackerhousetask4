@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  tigergraph:
+    image: tigergraph/tigergraph:latest
+    container_name: tigergraph
+    ports:
+      - "9000:9000"
+      - "14240:14240"
+      - "14022:14022"
+    volumes:
+      - tigergraph_data:/home/tigergraph/mydata
+    environment:
+      - GET_LICENSE=1
+
+volumes:
+  tigergraph_data:
+

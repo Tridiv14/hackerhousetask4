@@ -1,0 +1,19 @@
+# Environment & Secret variables
+.env
+*.env
+
+# Large raw datasets (> 50 MB)
+datasets/transactions.csv
+datasets/*.zip
+datasets/*.tar.gz
+
+# Python & IDE caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.DS_Store
+.vscode/
+.idea/
+venv/
+.venv/

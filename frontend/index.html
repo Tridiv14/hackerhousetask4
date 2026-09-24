@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autonomous Fraud Investigation AI Agent</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #060911;
+      color: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #0c1222;
+      border-bottom: 1px solid #1e293b;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #06b6d4, #6366f1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+    }
+    .status-badge {
+      background-color: #064e3b;
+      color: #34d399;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid #059669;
+    }
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.5rem;
+    }
+    .panel {
+      background: rgba(13, 19, 33, 0.8);
+      border: 1px solid #1e293b;
+      border-radius: 1rem;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    h2, h3 { font-size: 1rem; margin-bottom: 1rem; color: #38bdf8; border-bottom: 1px solid #1e293b; padding-bottom: 0.5rem;}
+    .case-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .case-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .case-card:hover, .case-card.active {
+      border-color: #06b6d4;
+      background: #162032;
+    }
+    .case-card .id { font-family: monospace; font-weight: 700; color: #38bdf8; }
+    .case-card .meta { font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem; }
+    .btn {
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    .btn:hover { opacity: 0.9; }
+    .grid-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .metric-card {
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid #1e293b;
+      text-align: center;
+    }
+    .metric-card .val { font-size: 1.75rem; font-weight: 800; color: #06b6d4; margin-top: 0.5rem; }
+    .log-box {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      height: 300px;
+      overflow-y: auto;
+      color: #38bdf8;
+      white-space: pre-wrap;
+    }
+    pre {
+      background: #020617;
+      border: 1px solid #1e293b;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="logo">TG</div>
+      <div>
+        <h1 style="font-size: 1.1rem; color: #f8fafc;">Autonomous Fraud Investigation Agent</h1>
+        <p style="font-size: 0.75rem; color: #94a3b8;">TigerGraph Powered Engine</p>
+      </div>
+    </div>
+    <div id="backend-status-container" style="display:flex; gap: 0.5rem; align-items:center;">
+        <div class="status-badge" id="backend-status">Checking API Status...</div>
+    </div>
+  </header>
+
+  <main>
+    <aside class="panel" style="margin-bottom: 0;">
+      <h2>Cases</h2>
+      <div class="case-list" id="case-list">
+        <div style="color: #64748b; font-size: 0.85rem;">Loading benchmark cases...</div>
+      </div>
+    </aside>
+
+    <section>
+      <div class="panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <div>
+            <h2 id="current-case-title" style="margin: 0; border: none;">Case HHG-015</h2>
+            <p id="current-case-desc" style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem;"></p>
+          </div>
+          <button class="btn" id="run-btn" style="width: auto; margin: 0;">&#9658; Run Investigation</button>
+        </div>
+
+        <div class="grid-metrics">
+          <div class="metric-card">
+            <div style="font-size: 0.75rem; color: #94a3b8;">Fraud Verdict</div>
+            <div class="val" id="val-verdict" style="color: #f43f5e;">UNKNOWN</div>
+          </div>
+          <div class="metric-card">
+            <div style="font-size: 0.75rem; color: #94a3b8;">Fraud Probability</div>
+            <div class="val" id="val-prob">N/A</div>
+          </div>
+          <div class="metric-card">
+            <div style="font-size: 0.75rem; color: #94a3b8;">Evidence Items</div>
+            <div class="val" id="val-evidence" style="color: #34d399;">0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Investigation Timeline</h3>
+        <div class="log-box" id="log-box">Select a case and click Run Investigation.</div>
+      </div>
+
+      <div class="panel">
+        <h3>Evidence Ledger</h3>
+        <pre id="evidence-output">// Evidence will stream here</pre>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+            <h3>Hypotheses / Uncertainty</h3>
+            <pre id="hypotheses-output">// Hypotheses will stream here</pre>
+        </div>
+        <div class="panel">
+            <h3>Graph Investigation</h3>
+            <pre id="graph-output">// Real graph insights</pre>
+        </div>
+      </div>
+      
+      <div class="panel">
+        <h3>Historical Case Memory</h3>
+        <pre id="memory-output">// Retrieved cases</pre>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+            <h3>Initial NBA &rarr; Evidence &rarr; Final NBA</h3>
+            <pre id="nba-output">// NBA changes will appear here</pre>
+        </div>
+        <div class="panel">
+            <h3>Policy / HITL</h3>
+            <pre id="policy-output">// Policy evaluation</pre>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom: 0;">
+        <h3>Final Case JSON</h3>
+        <pre id="json-output">// Case JSON payload will appear here after execution</pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let cases = [];
+    let selectedCaseId = "HHG-001";
+    let ws = null;
+
+    async function checkHealth() {
+      try {
+        const res = await fetch("/api/health");
+        if (res.ok) {
+          const data = await res.json();
+          let tgLabel = "Offline";
+          let tgColor = "#881337";
+          let tgText = "#fda4af";
+          if (data.tigergraph === "Online") {
+              tgLabel = "TigerGraph Online";
+              tgColor = "#064e3b";
+              tgText = "#34d399";
+          } else {
+              tgLabel = "⚠ TigerGraph Offline";
+          }
+          
+          let overallStatus = "Healthy";
+          if (data.status !== "HEALTHY") overallStatus = "System Degraded";
+
+          document.getElementById("backend-status-container").innerHTML = `
+            <div class="status-badge" style="background-color: ${tgColor}; color: ${tgText}; border-color: ${tgText};">${tgLabel}</div>
+            <div class="status-badge">API: ${data.api}</div>
+            <div class="status-badge">LLM: ${data.llm_model}</div>
+          `;
+        }
+      } catch (e) {
+        document.getElementById("backend-status-container").innerHTML = `<div class="status-badge" style="background-color:#881337; color:#fda4af;">Backend Offline</div>`;
+      }
+    }
+
+    async function loadCases() {
+      try {
+        const res = await fetch("/api/cases");
+        if (res.ok) {
+          const data = await res.json();
+          cases = data.cases;
+          renderCaseList();
+          selectCase(cases[0].case_id);
+        }
+      } catch (e) {
+        console.error("Failed to load cases", e);
+      }
+    }
+
+    function renderCaseList() {
+      const container = document.getElementById("case-list");
+      container.innerHTML = "";
+      cases.forEach(c => {
+        const div = document.createElement("div");
+        div.className = \`case-card \${c.case_id === selectedCaseId ? 'active' : ''}\`;
+        div.onclick = () => selectCase(c.case_id);
+        div.innerHTML = \`
+          <div class="id">\${c.case_id}</div>
+          <div class="meta">User: \${c.target_user} | \${c.trigger.type}</div>
+        \`;
+        container.appendChild(div);
+      });
+    }
+
+    function selectCase(caseId) {
+      selectedCaseId = caseId;
+      renderCaseList();
+      const target = cases.find(c => c.case_id === caseId);
+      if (target) {
+        document.getElementById("current-case-title").innerText = \`Case \${target.case_id} (\${target.target_user})\`;
+        document.getElementById("current-case-desc").innerText = target.trigger.text;
+      }
+      
+      resetDashboard();
+      
+      fetch(\`/api/cases/\${caseId}\`).then(res => res.json()).then(data => {
+          updateDashboard(data);
+      }).catch(() => {});
+    }
+    
+    function resetDashboard() {
+        document.getElementById("val-verdict").innerText = "UNKNOWN";
+        document.getElementById("val-prob").innerText = "N/A";
+        document.getElementById("val-evidence").innerText = "0";
+        document.getElementById("log-box").innerText = "Ready to run.";
+        document.getElementById("evidence-output").innerText = "";
+        document.getElementById("hypotheses-output").innerText = "";
+        document.getElementById("graph-output").innerText = "";
+        document.getElementById("memory-output").innerText = "";
+        document.getElementById("nba-output").innerText = "";
+        document.getElementById("policy-output").innerText = "";
+        document.getElementById("json-output").innerText = "";
+    }
+
+    function updateDashboard(data) {
+        if (!data) return;
+        
+        let invStatus = "OPEN";
+        if (data.investigation && data.investigation.status) invStatus = data.investigation.status;
+        else if (data.status) invStatus = data.status;
+        
+        document.getElementById("val-verdict").innerText = invStatus;
+        
+        // Probability
+        let prob = "N/A";
+        if (data.hypotheses && data.hypotheses.length > 0) {
+            prob = \`\${(data.hypotheses[0].confidence * 100).toFixed(0)}%\`;
+        }
+        document.getElementById("val-prob").innerText = prob;
+        
+        // Evidence count
+        let evCount = 0;
+        if (data.evidence) evCount = data.evidence.length;
+        else if (data.evidence_ledger) evCount = data.evidence_ledger.length;
+        document.getElementById("val-evidence").innerText = evCount;
+        
+        // Trace
+        let traceList = [];
+        if (data.investigation && data.investigation.trace) traceList = data.investigation.trace;
+        else if (data.investigation_trace) traceList = data.investigation_trace;
+        if (traceList.length > 0) renderTrace(traceList);
+        
+        // Ledger
+        let ev = data.evidence || data.evidence_ledger || [];
+        if (ev.length > 0) {
+            document.getElementById("evidence-output").innerText = JSON.stringify(ev, null, 2);
+        }
+        
+        // Hypotheses
+        if (data.hypotheses) {
+            let hText = "HYPOTHESES:\n";
+            data.hypotheses.forEach(h => {
+                hText += \`\${h.description.padEnd(25)} \${(h.confidence||0).toFixed(2)}\n\`;
+            });
+            if (data.uncertainty) {
+                hText += \`\nSUFFICIENCY: \${data.uncertainty.sufficient ? 'SUFFICIENT' : 'INSUFFICIENT'}\n\`;
+                if(data.uncertainty.missing_evidence) hText += \`Missing: \${data.uncertainty.missing_evidence.join(', ')}\`;
+            }
+            document.getElementById("hypotheses-output").innerText = hText;
+        }
+        
+        // Graph
+        let gData = data.graph_query_provenance || [];
+        if (gData.length > 0) {
+            let out = "";
+            gData.forEach(g => {
+                out += \`Query: \${g.query_id}\\nVertices: \${g.entities?g.entities.length:0}\\nEdges: \${g.relationships?g.relationships.length:0}\\nProvenance: \${g.provenance?g.provenance.join(' | '):''}\\n\\n\`;
+            });
+            document.getElementById("graph-output").innerText = out;
+        }
+        
+        // Memory
+        let mem = data.historical_matches || [];
+        if (mem.length > 0) {
+            document.getElementById("memory-output").innerText = JSON.stringify(mem, null, 2);
+        }
+        
+        // NBA
+        let nbaText = "INITIAL NBA:\n" + JSON.stringify(data.initial_nba||{}, null, 2) + "\n\nFINAL NBA:\n" + JSON.stringify(data.final_nba||{}, null, 2);
+        document.getElementById("nba-output").innerText = nbaText;
+        
+        // Policy
+        if (data.policy_decision || data.approval || data.approval_state) {
+            document.getElementById("policy-output").innerText = JSON.stringify(data.approval || data.approval_state || {}, null, 2);
+        }
+        
+        // Final JSON
+        document.getElementById("json-output").innerText = JSON.stringify(data, null, 2);
+    }
+    
+    function renderTrace(traceList) {
+      const logBox = document.getElementById("log-box");
+      let out = "";
+      traceList.forEach(t => {
+        out += \`[\${t.stage}]\\n\${t.event}\\n\`;
+        if (t.tool) out += \`Tool: \${t.tool}\\n\`;
+        if (t.details && t.details.backend) out += \`Backend: \${t.details.backend}\\n\`;
+        if (t.query_id && t.query_id !== "N/A") out += \`Query ID: \${t.query_id} (\${t.duration_ms}ms)\\n\`;
+        out += "\\n";
+      });
+      logBox.innerText = out;
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    document.getElementById("run-btn").addEventListener("click", () => {
+        if (ws) ws.close();
+        resetDashboard();
+        
+        document.getElementById("log-box").innerText = "Connecting...\n";
+        
+        const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+        ws = new WebSocket(\`\${wsProtocol}//\${window.location.host}/ws/investigate/\${selectedCaseId}\`);
+        
+        ws.onmessage = (event) => {
+            const payload = JSON.parse(event.data);
+            if (payload.event === "step" && payload.state) {
+                updateDashboard(payload.state);
+            }
+        };
+        
+        ws.onerror = () => {
+            document.getElementById("log-box").innerText += "\n[ERROR] WebSocket connection failed.";
+        };
+        
+        ws.onclose = () => {
+            document.getElementById("log-box").innerText += "\n[COMPLETE] Investigation finished.";
+            // Fetch final saved case to be sure
+            fetch(\`/api/cases/\${selectedCaseId}\`).then(res => res.json()).then(data => {
+                updateDashboard(data);
+            }).catch(() => {});
+        };
+    });
+
+    setInterval(checkHealth, 5000);
+    checkHealth();
+    loadCases();
+  </script>
+</body>
+</html>

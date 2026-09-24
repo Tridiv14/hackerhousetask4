@@ -1,0 +1,154 @@
+{
+  "case_id": "HHG-003",
+  "trigger": {
+    "type": "customer_report",
+    "text": "Customer C08623 message: 'I never made this $49.00 purchase. Please check my card.' Refers to 3530164.",
+    "flagged_txn_id": "3530164",
+    "card_id": "C08623-K2",
+    "risk_score": null
+  },
+  "investigation": {
+    "status": "CLOSED_LEGITIMATE",
+    "started_at": "2026-09-24T14:45:30Z",
+    "completed_at": "2026-09-24T14:45:30Z",
+    "trace": [
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "CASE",
+        "event": "Case initialized. Customer: C08623 | Risk score: None",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {
+          "trigger": {
+            "type": "customer_report",
+            "text": "Customer C08623 message: 'I never made this $49.00 purchase. Please check my card.' Refers to 3530164.",
+            "flagged_txn_id": "3530164",
+            "card_id": "C08623-K2",
+            "risk_score": null
+          }
+        }
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "HYPOTHESIS",
+        "event": "Evaluated hypotheses. Queued 0 tools.",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {
+          "hypotheses": []
+        }
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "NBA",
+        "event": "Initial recommendation generated",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "ASSESSMENT",
+        "event": "Evidence sufficiency: INSUFFICIENT",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "NBA",
+        "event": "Final recommendation generated",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "POLICY",
+        "event": "Policy evaluated",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "CASE",
+        "event": "Investigation written to graph",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "COMPLETE",
+        "event": "Investigation finished",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      }
+    ],
+    "tool_calls": []
+  },
+  "evidence": [
+    {
+      "evidence_id": "EVID-424f1e52",
+      "source": "trigger",
+      "source_id": "system",
+      "type": "INITIAL_ALERT",
+      "observation": "{\"type\": \"customer_report\", \"text\": \"Customer C08623 message: 'I never made this $49.00 purchase. Please check my card.' Refers to 3530164.\", \"flagged_txn_id\": \"3530164\", \"card_id\": \"C08623-K2\", \"risk_score\": null}",
+      "supports": [],
+      "contradicts": [],
+      "confidence": 1.0,
+      "timestamp": "2026-09-24T14:45:30Z",
+      "query_id": "N/A",
+      "provenance": "Alert System"
+    }
+  ],
+  "hypotheses": [],
+  "uncertainty": {},
+  "historical_matches": [],
+  "initial_nba": {},
+  "evidence_requests": [],
+  "evidence_received": [],
+  "final_nba": {},
+  "policy_decision": null,
+  "approval": null,
+  "actions": [],
+  "case_memory": {
+    "query_id": "7caf3230-9e14-477a-aff6-0b5eb692f0aa",
+    "timestamp": "2026-09-24T14:45:30Z",
+    "entities": [],
+    "relationships": [],
+    "observations": [],
+    "provenance": [
+      "Executed write_case_to_graph on TigerGraph (http://localhost:9000)",
+      "Fallback: mock writing case HHG-003 to graph"
+    ]
+  },
+  "stop_reason": "Completed full investigation loop.",
+  "explanation": ""
+}

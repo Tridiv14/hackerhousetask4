@@ -1,0 +1,35 @@
+================================================================================
+               DEPARTMENT OF THE TREASURY - FINCEN BSAR                 
+                 SUSPICIOUS ACTIVITY REPORT (SAR)                       
+================================================================================
+FILING ID           : SAR-FINCEN-2024-TEST-001
+CASE ID             : TEST-001
+DATE PREPARED       : 2026-09-23 18:53:19 UTC
+FILING INSTITUTION  : Autonomous AI Fraud Investigation Core
+--------------------------------------------------------------------------------
+
+PART I: SUBJECT INFORMATION
+  Subject Full Name  : Test User
+  Account ID / Ref   : None
+  Email Address      : test@mail.com
+  Phone Number       : N/A
+  Risk Profile Score : 0.00
+
+PART II: SUSPICIOUS ACTIVITY CLASSIFICATION
+  Activity Type      : STRUCTURING
+  Total Amount       : $15,000.00
+  Structuring Flag   : YES
+  Fraud Ring Flag    : NO
+
+PART III: DETAILED AGENT NARRATIVE & INVESTIGATION EVIDENCE
+  Graph Analytics Summary:
+  Test Summary
+
+  Agent Reasoning & Compliance Determination:
+  Test Reasoning
+
+PART IV: ENFORCEMENT & REMEDIATION ACTIONS EXECUTED
+
+================================================================================
+                   END OF OFFICIAL FINCEN SAR REPORT                            
+================================================================================

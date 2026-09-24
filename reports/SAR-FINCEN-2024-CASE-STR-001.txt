@@ -1,0 +1,55 @@
+================================================================================
+               DEPARTMENT OF THE TREASURY - FINCEN BSAR                 
+                 SUSPICIOUS ACTIVITY REPORT (SAR)                       
+================================================================================
+FILING ID           : SAR-FINCEN-2024-CASE-STR-001
+CASE ID             : CASE-STR-001
+DATE PREPARED       : 2026-09-22 12:05:59 UTC
+FILING INSTITUTION  : Autonomous AI Fraud Investigation Core
+--------------------------------------------------------------------------------
+
+PART I: SUBJECT INFORMATION
+  Subject Full Name  : Structuring Suspect 1
+  Account ID / Ref   : user_str_1
+  Email Address      : struct1@mail.com
+  Phone Number       : +15550101
+  Risk Profile Score : 0.82
+
+PART II: SUSPICIOUS ACTIVITY CLASSIFICATION
+  Activity Type      : STRUCTURING
+  Total Amount       : $28,500.00
+  Structuring Flag   : YES
+  Fraud Ring Flag    : NO
+
+PART III: DETAILED AGENT NARRATIVE & INVESTIGATION EVIDENCE
+  Graph Analytics Summary:
+  === GraphRAG Evidence Context for Target User: user_str_1 ===
+Customer Name: Structuring Suspect 1
+Account Created: 2024-01-10 | Current Risk Score: 0.82
+
+[Transaction History (3 records)]:
+  - TX ID: tx_str_1_1 | Amount: $9,500.00 | Timestamp: 2024-09-01T10:00:00 | Location: NY, USA | Risk Score: 0.88
+  - TX ID: tx_str_1_2 | Amount: $9,800.00 | Timestamp: 2024-09-01T11:30:00 | Location: NY, USA | Risk Score: 0.9
+  - TX ID: tx_str_1_3 | Amount: $9,200.00 | Timestamp: 2024-09-01T14:15:00 | Location: NY, USA | Risk Score: 0.85
+  Total Cumulative Transaction Volume: $28,500.00
+
+[GSQL Structuring Pattern Signal]:
+  CRITICAL: Structuring pattern detected! Total structured amount: $28,500.00 across 3 transactions (Just below $10,000 threshold).
+  SAR Mandatory: True
+
+[GSQL Fraud Ring & Entity Link Signal]:
+  No shared devices or suspicious entity links found.
+
+  Agent Reasoning & Compliance Determination:
+  Detected cash structuring: $28,500.00 total.
+
+PART IV: ENFORCEMENT & REMEDIATION ACTIONS EXECUTED
+  - Action: block_card | Status: SUCCESS | Details: Card card_user_str_1 successfully blocked in payment core.
+  - Action: send_customer_sms | Status: SUCCESS | Details: SMS warning sent to user_str_1: Security Alert: Suspicious transaction flagged on your account.
+  - Action: freeze_account | Status: PENDING_MANAGER_APPROVAL | Details: Account freeze queued. Manager authorization required.
+  - Action: file_sar | Status: SUCCESS | Details: FinCEN SAR report generated and submitted electronically for case CASE-STR-001.
+  - Action: escalate_to_analyst | Status: SUCCESS | Details: Case CASE-STR-001 assigned to Senior Fraud Analyst queue.
+
+================================================================================
+                   END OF OFFICIAL FINCEN SAR REPORT                            
+================================================================================

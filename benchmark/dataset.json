@@ -1,0 +1,769 @@
+{
+  "cases": [
+    {
+      "case_id": "CASE-STR-001",
+      "type": "STRUCTURING",
+      "target_user": "user_str_1",
+      "user_details": {
+        "id": "user_str_1",
+        "name": "Structuring Suspect 1",
+        "email": "struct1@mail.com",
+        "phone": "+15550101",
+        "created_at": "2024-01-10",
+        "risk_score": 0.82,
+        "status": "SUSPICIOUS"
+      },
+      "transactions": [
+        {
+          "id": "tx_str_1_1",
+          "amount": 9500.0,
+          "timestamp": "2024-09-01T10:00:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_1",
+          "ip_address": "192.168.1.11",
+          "is_fraud": true,
+          "risk_score": 0.88,
+          "merchant": "Merch_ATM_1"
+        },
+        {
+          "id": "tx_str_1_2",
+          "amount": 9800.0,
+          "timestamp": "2024-09-01T11:30:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_1",
+          "ip_address": "192.168.1.11",
+          "is_fraud": true,
+          "risk_score": 0.9,
+          "merchant": "Merch_ATM_2"
+        },
+        {
+          "id": "tx_str_1_3",
+          "amount": 9200.0,
+          "timestamp": "2024-09-01T14:15:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_1",
+          "ip_address": "192.168.1.11",
+          "is_fraud": true,
+          "risk_score": 0.85,
+          "merchant": "Merch_Wire_1"
+        }
+      ],
+      "total_amount": 28500.0,
+      "expected_fraud": true,
+      "expected_action": "FILE_SAR_AND_FREEZE",
+      "description": "Multiple cash deposits/wires just below $10,000 threshold totaling $28500.0"
+    },
+    {
+      "case_id": "CASE-STR-002",
+      "type": "STRUCTURING",
+      "target_user": "user_str_2",
+      "user_details": {
+        "id": "user_str_2",
+        "name": "Structuring Suspect 2",
+        "email": "struct2@mail.com",
+        "phone": "+15550102",
+        "created_at": "2024-01-10",
+        "risk_score": 0.82,
+        "status": "SUSPICIOUS"
+      },
+      "transactions": [
+        {
+          "id": "tx_str_2_1",
+          "amount": 9500.0,
+          "timestamp": "2024-09-01T10:00:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_2",
+          "ip_address": "192.168.1.12",
+          "is_fraud": true,
+          "risk_score": 0.88,
+          "merchant": "Merch_ATM_1"
+        },
+        {
+          "id": "tx_str_2_2",
+          "amount": 9800.0,
+          "timestamp": "2024-09-01T11:30:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_2",
+          "ip_address": "192.168.1.12",
+          "is_fraud": true,
+          "risk_score": 0.9,
+          "merchant": "Merch_ATM_2"
+        },
+        {
+          "id": "tx_str_2_3",
+          "amount": 9200.0,
+          "timestamp": "2024-09-01T14:15:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_2",
+          "ip_address": "192.168.1.12",
+          "is_fraud": true,
+          "risk_score": 0.85,
+          "merchant": "Merch_Wire_1"
+        }
+      ],
+      "total_amount": 28500.0,
+      "expected_fraud": true,
+      "expected_action": "FILE_SAR_AND_FREEZE",
+      "description": "Multiple cash deposits/wires just below $10,000 threshold totaling $28500.0"
+    },
+    {
+      "case_id": "CASE-STR-003",
+      "type": "STRUCTURING",
+      "target_user": "user_str_3",
+      "user_details": {
+        "id": "user_str_3",
+        "name": "Structuring Suspect 3",
+        "email": "struct3@mail.com",
+        "phone": "+15550103",
+        "created_at": "2024-01-10",
+        "risk_score": 0.82,
+        "status": "SUSPICIOUS"
+      },
+      "transactions": [
+        {
+          "id": "tx_str_3_1",
+          "amount": 9500.0,
+          "timestamp": "2024-09-01T10:00:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_3",
+          "ip_address": "192.168.1.13",
+          "is_fraud": true,
+          "risk_score": 0.88,
+          "merchant": "Merch_ATM_1"
+        },
+        {
+          "id": "tx_str_3_2",
+          "amount": 9800.0,
+          "timestamp": "2024-09-01T11:30:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_3",
+          "ip_address": "192.168.1.13",
+          "is_fraud": true,
+          "risk_score": 0.9,
+          "merchant": "Merch_ATM_2"
+        },
+        {
+          "id": "tx_str_3_3",
+          "amount": 9200.0,
+          "timestamp": "2024-09-01T14:15:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_3",
+          "ip_address": "192.168.1.13",
+          "is_fraud": true,
+          "risk_score": 0.85,
+          "merchant": "Merch_Wire_1"
+        }
+      ],
+      "total_amount": 28500.0,
+      "expected_fraud": true,
+      "expected_action": "FILE_SAR_AND_FREEZE",
+      "description": "Multiple cash deposits/wires just below $10,000 threshold totaling $28500.0"
+    },
+    {
+      "case_id": "CASE-STR-004",
+      "type": "STRUCTURING",
+      "target_user": "user_str_4",
+      "user_details": {
+        "id": "user_str_4",
+        "name": "Structuring Suspect 4",
+        "email": "struct4@mail.com",
+        "phone": "+15550104",
+        "created_at": "2024-01-10",
+        "risk_score": 0.82,
+        "status": "SUSPICIOUS"
+      },
+      "transactions": [
+        {
+          "id": "tx_str_4_1",
+          "amount": 9500.0,
+          "timestamp": "2024-09-01T10:00:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_4",
+          "ip_address": "192.168.1.14",
+          "is_fraud": true,
+          "risk_score": 0.88,
+          "merchant": "Merch_ATM_1"
+        },
+        {
+          "id": "tx_str_4_2",
+          "amount": 9800.0,
+          "timestamp": "2024-09-01T11:30:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_4",
+          "ip_address": "192.168.1.14",
+          "is_fraud": true,
+          "risk_score": 0.9,
+          "merchant": "Merch_ATM_2"
+        },
+        {
+          "id": "tx_str_4_3",
+          "amount": 9200.0,
+          "timestamp": "2024-09-01T14:15:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_4",
+          "ip_address": "192.168.1.14",
+          "is_fraud": true,
+          "risk_score": 0.85,
+          "merchant": "Merch_Wire_1"
+        }
+      ],
+      "total_amount": 28500.0,
+      "expected_fraud": true,
+      "expected_action": "FILE_SAR_AND_FREEZE",
+      "description": "Multiple cash deposits/wires just below $10,000 threshold totaling $28500.0"
+    },
+    {
+      "case_id": "CASE-STR-005",
+      "type": "STRUCTURING",
+      "target_user": "user_str_5",
+      "user_details": {
+        "id": "user_str_5",
+        "name": "Structuring Suspect 5",
+        "email": "struct5@mail.com",
+        "phone": "+15550105",
+        "created_at": "2024-01-10",
+        "risk_score": 0.82,
+        "status": "SUSPICIOUS"
+      },
+      "transactions": [
+        {
+          "id": "tx_str_5_1",
+          "amount": 9500.0,
+          "timestamp": "2024-09-01T10:00:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_5",
+          "ip_address": "192.168.1.15",
+          "is_fraud": true,
+          "risk_score": 0.88,
+          "merchant": "Merch_ATM_1"
+        },
+        {
+          "id": "tx_str_5_2",
+          "amount": 9800.0,
+          "timestamp": "2024-09-01T11:30:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_5",
+          "ip_address": "192.168.1.15",
+          "is_fraud": true,
+          "risk_score": 0.9,
+          "merchant": "Merch_ATM_2"
+        },
+        {
+          "id": "tx_str_5_3",
+          "amount": 9200.0,
+          "timestamp": "2024-09-01T14:15:00",
+          "location": "NY, USA",
+          "device_id": "dev_str_5",
+          "ip_address": "192.168.1.15",
+          "is_fraud": true,
+          "risk_score": 0.85,
+          "merchant": "Merch_Wire_1"
+        }
+      ],
+      "total_amount": 28500.0,
+      "expected_fraud": true,
+      "expected_action": "FILE_SAR_AND_FREEZE",
+      "description": "Multiple cash deposits/wires just below $10,000 threshold totaling $28500.0"
+    },
+    {
+      "case_id": "CASE-RING-001",
+      "type": "FRAUD_RING",
+      "target_user": "user_ring_1_a",
+      "user_details": {
+        "id": "user_ring_1_a",
+        "name": "Ring Member 1A",
+        "email": "ring1a@mail.com",
+        "phone": "+15550201",
+        "created_at": "2024-05-12",
+        "risk_score": 0.79,
+        "status": "ACTIVE"
+      },
+      "connected_users": [
+        "user_ring_1_b",
+        "user_ring_1_c"
+      ],
+      "transactions": [
+        {
+          "id": "tx_ring_1_1",
+          "amount": 4500.0,
+          "timestamp": "2024-09-02T08:00:00",
+          "location": "FL, USA",
+          "device_id": "dev_ring_shared_1",
+          "ip_address": "10.0.44.1",
+          "is_fraud": true,
+          "risk_score": 0.8,
+          "merchant": "CryptoExchange_X"
+        }
+      ],
+      "shared_device": "dev_ring_shared_1",
+      "shared_ip": "10.0.44.1",
+      "total_amount": 13500.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_ESCALATE",
+      "description": "Shared device dev_ring_shared_1 and IP 10.0.44.1 across 3 unlinked accounts"
+    },
+    {
+      "case_id": "CASE-RING-002",
+      "type": "FRAUD_RING",
+      "target_user": "user_ring_2_a",
+      "user_details": {
+        "id": "user_ring_2_a",
+        "name": "Ring Member 2A",
+        "email": "ring2a@mail.com",
+        "phone": "+15550202",
+        "created_at": "2024-05-12",
+        "risk_score": 0.79,
+        "status": "ACTIVE"
+      },
+      "connected_users": [
+        "user_ring_2_b",
+        "user_ring_2_c"
+      ],
+      "transactions": [
+        {
+          "id": "tx_ring_2_1",
+          "amount": 4500.0,
+          "timestamp": "2024-09-02T08:00:00",
+          "location": "FL, USA",
+          "device_id": "dev_ring_shared_2",
+          "ip_address": "10.0.44.2",
+          "is_fraud": true,
+          "risk_score": 0.8,
+          "merchant": "CryptoExchange_X"
+        }
+      ],
+      "shared_device": "dev_ring_shared_2",
+      "shared_ip": "10.0.44.2",
+      "total_amount": 13500.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_ESCALATE",
+      "description": "Shared device dev_ring_shared_2 and IP 10.0.44.2 across 3 unlinked accounts"
+    },
+    {
+      "case_id": "CASE-RING-003",
+      "type": "FRAUD_RING",
+      "target_user": "user_ring_3_a",
+      "user_details": {
+        "id": "user_ring_3_a",
+        "name": "Ring Member 3A",
+        "email": "ring3a@mail.com",
+        "phone": "+15550203",
+        "created_at": "2024-05-12",
+        "risk_score": 0.79,
+        "status": "ACTIVE"
+      },
+      "connected_users": [
+        "user_ring_3_b",
+        "user_ring_3_c"
+      ],
+      "transactions": [
+        {
+          "id": "tx_ring_3_1",
+          "amount": 4500.0,
+          "timestamp": "2024-09-02T08:00:00",
+          "location": "FL, USA",
+          "device_id": "dev_ring_shared_3",
+          "ip_address": "10.0.44.3",
+          "is_fraud": true,
+          "risk_score": 0.8,
+          "merchant": "CryptoExchange_X"
+        }
+      ],
+      "shared_device": "dev_ring_shared_3",
+      "shared_ip": "10.0.44.3",
+      "total_amount": 13500.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_ESCALATE",
+      "description": "Shared device dev_ring_shared_3 and IP 10.0.44.3 across 3 unlinked accounts"
+    },
+    {
+      "case_id": "CASE-RING-004",
+      "type": "FRAUD_RING",
+      "target_user": "user_ring_4_a",
+      "user_details": {
+        "id": "user_ring_4_a",
+        "name": "Ring Member 4A",
+        "email": "ring4a@mail.com",
+        "phone": "+15550204",
+        "created_at": "2024-05-12",
+        "risk_score": 0.79,
+        "status": "ACTIVE"
+      },
+      "connected_users": [
+        "user_ring_4_b",
+        "user_ring_4_c"
+      ],
+      "transactions": [
+        {
+          "id": "tx_ring_4_1",
+          "amount": 4500.0,
+          "timestamp": "2024-09-02T08:00:00",
+          "location": "FL, USA",
+          "device_id": "dev_ring_shared_4",
+          "ip_address": "10.0.44.4",
+          "is_fraud": true,
+          "risk_score": 0.8,
+          "merchant": "CryptoExchange_X"
+        }
+      ],
+      "shared_device": "dev_ring_shared_4",
+      "shared_ip": "10.0.44.4",
+      "total_amount": 13500.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_ESCALATE",
+      "description": "Shared device dev_ring_shared_4 and IP 10.0.44.4 across 3 unlinked accounts"
+    },
+    {
+      "case_id": "CASE-RING-005",
+      "type": "FRAUD_RING",
+      "target_user": "user_ring_5_a",
+      "user_details": {
+        "id": "user_ring_5_a",
+        "name": "Ring Member 5A",
+        "email": "ring5a@mail.com",
+        "phone": "+15550205",
+        "created_at": "2024-05-12",
+        "risk_score": 0.79,
+        "status": "ACTIVE"
+      },
+      "connected_users": [
+        "user_ring_5_b",
+        "user_ring_5_c"
+      ],
+      "transactions": [
+        {
+          "id": "tx_ring_5_1",
+          "amount": 4500.0,
+          "timestamp": "2024-09-02T08:00:00",
+          "location": "FL, USA",
+          "device_id": "dev_ring_shared_5",
+          "ip_address": "10.0.44.5",
+          "is_fraud": true,
+          "risk_score": 0.8,
+          "merchant": "CryptoExchange_X"
+        }
+      ],
+      "shared_device": "dev_ring_shared_5",
+      "shared_ip": "10.0.44.5",
+      "total_amount": 13500.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_ESCALATE",
+      "description": "Shared device dev_ring_shared_5 and IP 10.0.44.5 across 3 unlinked accounts"
+    },
+    {
+      "case_id": "CASE-CARD-001",
+      "type": "CARD_FRAUD",
+      "target_user": "user_card_1",
+      "user_details": {
+        "id": "user_card_1",
+        "name": "Card Victim 1",
+        "email": "card1@mail.com",
+        "phone": "+15550301",
+        "created_at": "2022-03-15",
+        "risk_score": 0.65,
+        "status": "ACTIVE"
+      },
+      "card_id": "card_val_1",
+      "transactions": [
+        {
+          "id": "tx_card_1_1",
+          "amount": 1250.0,
+          "timestamp": "2024-09-03T02:10:00",
+          "location": "Overseas/VPN",
+          "device_id": "dev_unrecognized_1",
+          "ip_address": "185.220.101.1",
+          "is_fraud": true,
+          "risk_score": 0.92,
+          "merchant": "LuxuryGoods_Store"
+        }
+      ],
+      "total_amount": 1250.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_SMS",
+      "description": "High value transaction from foreign VPN IP on luxury goods merchant"
+    },
+    {
+      "case_id": "CASE-CARD-002",
+      "type": "CARD_FRAUD",
+      "target_user": "user_card_2",
+      "user_details": {
+        "id": "user_card_2",
+        "name": "Card Victim 2",
+        "email": "card2@mail.com",
+        "phone": "+15550302",
+        "created_at": "2022-03-15",
+        "risk_score": 0.65,
+        "status": "ACTIVE"
+      },
+      "card_id": "card_val_2",
+      "transactions": [
+        {
+          "id": "tx_card_2_1",
+          "amount": 1250.0,
+          "timestamp": "2024-09-03T02:10:00",
+          "location": "Overseas/VPN",
+          "device_id": "dev_unrecognized_2",
+          "ip_address": "185.220.101.2",
+          "is_fraud": true,
+          "risk_score": 0.92,
+          "merchant": "LuxuryGoods_Store"
+        }
+      ],
+      "total_amount": 1250.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_SMS",
+      "description": "High value transaction from foreign VPN IP on luxury goods merchant"
+    },
+    {
+      "case_id": "CASE-CARD-003",
+      "type": "CARD_FRAUD",
+      "target_user": "user_card_3",
+      "user_details": {
+        "id": "user_card_3",
+        "name": "Card Victim 3",
+        "email": "card3@mail.com",
+        "phone": "+15550303",
+        "created_at": "2022-03-15",
+        "risk_score": 0.65,
+        "status": "ACTIVE"
+      },
+      "card_id": "card_val_3",
+      "transactions": [
+        {
+          "id": "tx_card_3_1",
+          "amount": 1250.0,
+          "timestamp": "2024-09-03T02:10:00",
+          "location": "Overseas/VPN",
+          "device_id": "dev_unrecognized_3",
+          "ip_address": "185.220.101.3",
+          "is_fraud": true,
+          "risk_score": 0.92,
+          "merchant": "LuxuryGoods_Store"
+        }
+      ],
+      "total_amount": 1250.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_SMS",
+      "description": "High value transaction from foreign VPN IP on luxury goods merchant"
+    },
+    {
+      "case_id": "CASE-CARD-004",
+      "type": "CARD_FRAUD",
+      "target_user": "user_card_4",
+      "user_details": {
+        "id": "user_card_4",
+        "name": "Card Victim 4",
+        "email": "card4@mail.com",
+        "phone": "+15550304",
+        "created_at": "2022-03-15",
+        "risk_score": 0.65,
+        "status": "ACTIVE"
+      },
+      "card_id": "card_val_4",
+      "transactions": [
+        {
+          "id": "tx_card_4_1",
+          "amount": 1250.0,
+          "timestamp": "2024-09-03T02:10:00",
+          "location": "Overseas/VPN",
+          "device_id": "dev_unrecognized_4",
+          "ip_address": "185.220.101.4",
+          "is_fraud": true,
+          "risk_score": 0.92,
+          "merchant": "LuxuryGoods_Store"
+        }
+      ],
+      "total_amount": 1250.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_SMS",
+      "description": "High value transaction from foreign VPN IP on luxury goods merchant"
+    },
+    {
+      "case_id": "CASE-CARD-005",
+      "type": "CARD_FRAUD",
+      "target_user": "user_card_5",
+      "user_details": {
+        "id": "user_card_5",
+        "name": "Card Victim 5",
+        "email": "card5@mail.com",
+        "phone": "+15550305",
+        "created_at": "2022-03-15",
+        "risk_score": 0.65,
+        "status": "ACTIVE"
+      },
+      "card_id": "card_val_5",
+      "transactions": [
+        {
+          "id": "tx_card_5_1",
+          "amount": 1250.0,
+          "timestamp": "2024-09-03T02:10:00",
+          "location": "Overseas/VPN",
+          "device_id": "dev_unrecognized_5",
+          "ip_address": "185.220.101.5",
+          "is_fraud": true,
+          "risk_score": 0.92,
+          "merchant": "LuxuryGoods_Store"
+        }
+      ],
+      "total_amount": 1250.0,
+      "expected_fraud": true,
+      "expected_action": "BLOCK_CARD_AND_SMS",
+      "description": "High value transaction from foreign VPN IP on luxury goods merchant"
+    },
+    {
+      "case_id": "CASE-LEG-001",
+      "type": "LEGITIMATE",
+      "target_user": "user_leg_1",
+      "user_details": {
+        "id": "user_leg_1",
+        "name": "Honest Customer 1",
+        "email": "legit1@mail.com",
+        "phone": "+15550401",
+        "created_at": "2020-01-01",
+        "risk_score": 0.05,
+        "status": "ACTIVE"
+      },
+      "transactions": [
+        {
+          "id": "tx_leg_1_1",
+          "amount": 320.0,
+          "timestamp": "2024-09-04T12:00:00",
+          "location": "Home City",
+          "device_id": "dev_known_1",
+          "ip_address": "73.12.99.1",
+          "is_fraud": false,
+          "risk_score": 0.08,
+          "merchant": "GrocerySuperstore"
+        }
+      ],
+      "total_amount": 320.0,
+      "expected_fraud": false,
+      "expected_action": "APPROVE",
+      "description": "Standard low-risk recurring transaction from known home device"
+    },
+    {
+      "case_id": "CASE-LEG-002",
+      "type": "LEGITIMATE",
+      "target_user": "user_leg_2",
+      "user_details": {
+        "id": "user_leg_2",
+        "name": "Honest Customer 2",
+        "email": "legit2@mail.com",
+        "phone": "+15550402",
+        "created_at": "2020-01-01",
+        "risk_score": 0.05,
+        "status": "ACTIVE"
+      },
+      "transactions": [
+        {
+          "id": "tx_leg_2_1",
+          "amount": 320.0,
+          "timestamp": "2024-09-04T12:00:00",
+          "location": "Home City",
+          "device_id": "dev_known_2",
+          "ip_address": "73.12.99.2",
+          "is_fraud": false,
+          "risk_score": 0.08,
+          "merchant": "GrocerySuperstore"
+        }
+      ],
+      "total_amount": 320.0,
+      "expected_fraud": false,
+      "expected_action": "APPROVE",
+      "description": "Standard low-risk recurring transaction from known home device"
+    },
+    {
+      "case_id": "CASE-LEG-003",
+      "type": "LEGITIMATE",
+      "target_user": "user_leg_3",
+      "user_details": {
+        "id": "user_leg_3",
+        "name": "Honest Customer 3",
+        "email": "legit3@mail.com",
+        "phone": "+15550403",
+        "created_at": "2020-01-01",
+        "risk_score": 0.05,
+        "status": "ACTIVE"
+      },
+      "transactions": [
+        {
+          "id": "tx_leg_3_1",
+          "amount": 320.0,
+          "timestamp": "2024-09-04T12:00:00",
+          "location": "Home City",
+          "device_id": "dev_known_3",
+          "ip_address": "73.12.99.3",
+          "is_fraud": false,
+          "risk_score": 0.08,
+          "merchant": "GrocerySuperstore"
+        }
+      ],
+      "total_amount": 320.0,
+      "expected_fraud": false,
+      "expected_action": "APPROVE",
+      "description": "Standard low-risk recurring transaction from known home device"
+    },
+    {
+      "case_id": "CASE-LEG-004",
+      "type": "LEGITIMATE",
+      "target_user": "user_leg_4",
+      "user_details": {
+        "id": "user_leg_4",
+        "name": "Honest Customer 4",
+        "email": "legit4@mail.com",
+        "phone": "+15550404",
+        "created_at": "2020-01-01",
+        "risk_score": 0.05,
+        "status": "ACTIVE"
+      },
+      "transactions": [
+        {
+          "id": "tx_leg_4_1",
+          "amount": 320.0,
+          "timestamp": "2024-09-04T12:00:00",
+          "location": "Home City",
+          "device_id": "dev_known_4",
+          "ip_address": "73.12.99.4",
+          "is_fraud": false,
+          "risk_score": 0.08,
+          "merchant": "GrocerySuperstore"
+        }
+      ],
+      "total_amount": 320.0,
+      "expected_fraud": false,
+      "expected_action": "APPROVE",
+      "description": "Standard low-risk recurring transaction from known home device"
+    },
+    {
+      "case_id": "CASE-LEG-005",
+      "type": "LEGITIMATE",
+      "target_user": "user_leg_5",
+      "user_details": {
+        "id": "user_leg_5",
+        "name": "Honest Customer 5",
+        "email": "legit5@mail.com",
+        "phone": "+15550405",
+        "created_at": "2020-01-01",
+        "risk_score": 0.05,
+        "status": "ACTIVE"
+      },
+      "transactions": [
+        {
+          "id": "tx_leg_5_1",
+          "amount": 320.0,
+          "timestamp": "2024-09-04T12:00:00",
+          "location": "Home City",
+          "device_id": "dev_known_5",
+          "ip_address": "73.12.99.5",
+          "is_fraud": false,
+          "risk_score": 0.08,
+          "merchant": "GrocerySuperstore"
+        }
+      ],
+      "total_amount": 320.0,
+      "expected_fraud": false,
+      "expected_action": "APPROVE",
+      "description": "Standard low-risk recurring transaction from known home device"
+    }
+  ]
+}

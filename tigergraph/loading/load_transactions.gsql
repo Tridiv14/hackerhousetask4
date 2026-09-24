@@ -1,0 +1,29 @@
+USE GRAPH FraudInvestigation
+DROP JOB load_transactions
+
+CREATE LOADING JOB load_transactions FOR GRAPH FraudInvestigation {
+  DEFINE FILENAME f1 = "$sys.data_root/transactions.csv";
+  DEFINE FILENAME f2 = "$sys.data_root/identity.csv";
+  DEFINE FILENAME f3 = "$sys.data_root/closed_cases_history.csv";
+
+  // Load Transactions, Customers, Cards, Merchants
+  LOAD f1 TO VERTEX Transaction VALUES ($"TransactionID", $"TransactionID", $"TransactionAmt", $"ts", $"ProductCD", $"channel", $"risk_score") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f1 TO VERTEX Customer VALUES ($"customer_id", $"customer_id") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f1 TO VERTEX Card VALUES ($"card1", $"card1", $"card2", $"card3", $"card4", $"card5", $"card6") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f1 TO VERTEX Merchant VALUES ($"addr1", $"addr1", $"addr2") USING SEPARATOR=",", HEADER="true", EOL="\n";
+
+  LOAD f1 TO EDGE PERFORMED VALUES ($"customer_id", $"TransactionID") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f1 TO EDGE USED_CARD VALUES ($"TransactionID", $"card1") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f1 TO EDGE TRANSACTED_WITH VALUES ($"TransactionID", $"addr1") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f1 TO EDGE OWNS_CARD VALUES ($"customer_id", $"card1") USING SEPARATOR=",", HEADER="true", EOL="\n";
+
+  // Load Devices (identity.csv)
+  LOAD f2 TO VERTEX Device VALUES ($"TransactionID", $"DeviceType", $"DeviceInfo", $"id_30", $"id_31") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f2 TO EDGE USED_DEVICE VALUES ($"TransactionID", $"TransactionID") USING SEPARATOR=",", HEADER="true", EOL="\n";
+
+  // Load Closed Cases (closed_cases_history.csv)
+  LOAD f3 TO VERTEX ClosedCase VALUES ($"case_id", $"case_id", $"pattern", $"outcome", $"actions_taken") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f3 TO EDGE INVOLVES_CUSTOMER VALUES ($"case_id", $"customer_id") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f3 TO EDGE INVOLVES_CARD VALUES ($"case_id", $"card_id") USING SEPARATOR=",", HEADER="true", EOL="\n";
+  LOAD f3 TO EDGE INVOLVES_TRANSACTION VALUES ($"case_id", $"first_fraud_txn_id") USING SEPARATOR=",", HEADER="true", EOL="\n";
+}

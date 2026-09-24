@@ -1,0 +1,126 @@
+{
+  "total_cases_evaluated": 20,
+  "schema_compliance": "100.00%",
+  "detailed_results": [
+    {
+      "case_id": "HHG-001",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-002",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-003",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-004",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-005",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-006",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-007",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-008",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-009",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-010",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-011",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-012",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-013",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-014",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-015",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-016",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-017",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-018",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-019",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    },
+    {
+      "case_id": "HHG-020",
+      "is_valid_schema": true,
+      "verdict": "Unknown",
+      "tool_calls_made": 0
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "case_id": "HHG-019",
+  "trigger": {
+    "type": "risk_score",
+    "text": "Real-time model scored transaction 3503878 ($99.92, online) at 0.90. Review and decide.",
+    "flagged_txn_id": "3503878",
+    "card_id": "C07987-K2",
+    "risk_score": 0.9
+  },
+  "investigation": {
+    "status": "CLOSED_LEGITIMATE",
+    "started_at": "2026-09-24T14:45:30Z",
+    "completed_at": "2026-09-24T14:45:30Z",
+    "trace": [
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "CASE",
+        "event": "Case initialized. Customer: C07987 | Risk score: 0.9",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {
+          "trigger": {
+            "type": "risk_score",
+            "text": "Real-time model scored transaction 3503878 ($99.92, online) at 0.90. Review and decide.",
+            "flagged_txn_id": "3503878",
+            "card_id": "C07987-K2",
+            "risk_score": 0.9
+          }
+        }
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "HYPOTHESIS",
+        "event": "Evaluated hypotheses. Queued 0 tools.",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {
+          "hypotheses": []
+        }
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "NBA",
+        "event": "Initial recommendation generated",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "ASSESSMENT",
+        "event": "Evidence sufficiency: INSUFFICIENT",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "NBA",
+        "event": "Final recommendation generated",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "POLICY",
+        "event": "Policy evaluated",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "CASE",
+        "event": "Investigation written to graph",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      },
+      {
+        "timestamp": "2026-09-24T14:45:30Z",
+        "stage": "COMPLETE",
+        "event": "Investigation finished",
+        "status": "completed",
+        "tool": null,
+        "query_id": null,
+        "duration_ms": 0,
+        "evidence_ids": [],
+        "details": {}
+      }
+    ],
+    "tool_calls": []
+  },
+  "evidence": [
+    {
+      "evidence_id": "EVID-58d2df51",
+      "source": "trigger",
+      "source_id": "system",
+      "type": "INITIAL_ALERT",
+      "observation": "{\"type\": \"risk_score\", \"text\": \"Real-time model scored transaction 3503878 ($99.92, online) at 0.90. Review and decide.\", \"flagged_txn_id\": \"3503878\", \"card_id\": \"C07987-K2\", \"risk_score\": 0.9}",
+      "supports": [],
+      "contradicts": [],
+      "confidence": 1.0,
+      "timestamp": "2026-09-24T14:45:30Z",
+      "query_id": "N/A",
+      "provenance": "Alert System"
+    }
+  ],
+  "hypotheses": [],
+  "uncertainty": {},
+  "historical_matches": [],
+  "initial_nba": {},
+  "evidence_requests": [],
+  "evidence_received": [],
+  "final_nba": {},
+  "policy_decision": null,
+  "approval": null,
+  "actions": [],
+  "case_memory": {
+    "query_id": "a5b9dc55-62c7-4450-857d-3cee02e21242",
+    "timestamp": "2026-09-24T14:45:30Z",
+    "entities": [],
+    "relationships": [],
+    "observations": [],
+    "provenance": [
+      "Executed write_case_to_graph on TigerGraph (http://localhost:9000)",
+      "Fallback: mock writing case HHG-019 to graph"
+    ]
+  },
+  "stop_reason": "Completed full investigation loop.",
+  "explanation": ""
+}

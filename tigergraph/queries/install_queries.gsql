@@ -1,0 +1,113 @@
+USE GRAPH FraudInvestigation
+
+DROP QUERY ALL
+
+CREATE QUERY get_transaction_context(STRING tx_id) FOR GRAPH FraudInvestigation {
+  Seed = {Transaction.*};
+  Tx = SELECT s FROM Seed:s WHERE s.id == tx_id;
+  
+  Ctx = SELECT t FROM Tx:s -(USED_CARD>|<PERFORMED|USED_DEVICE>|USED_IP>|TRANSACTED_WITH>)- :t;
+  
+  PRINT Tx[Tx.id, Tx.amount, Tx.ts, Tx.product_cd, Tx.channel, Tx.risk_score];
+  PRINT Ctx;
+}
+
+CREATE QUERY get_customer_transaction_history(STRING customer_id) FOR GRAPH FraudInvestigation {
+  Seed = {Customer.*};
+  Cust = SELECT s FROM Seed:s WHERE s.id == customer_id;
+  
+  Tx = SELECT t FROM Cust:s -(PERFORMED>)-> Transaction:t;
+  
+  PRINT Cust;
+  PRINT Tx;
+}
+
+CREATE QUERY get_identity_telemetry(STRING tx_id) FOR GRAPH FraudInvestigation {
+  Seed = {Transaction.*};
+  Tx = SELECT s FROM Seed:s WHERE s.id == tx_id;
+  
+  Devices = SELECT t FROM Tx:s -(USED_DEVICE>)-> Device:t;
+  IPs = SELECT t FROM Tx:s -(USED_IP>)-> IPAddress:t;
+  
+  PRINT Devices;
+  PRINT IPs;
+}
+
+CREATE QUERY detect_structuring(STRING customer_id) FOR GRAPH FraudInvestigation {
+  Seed = {Customer.*};
+  Cust = SELECT s FROM Seed:s WHERE s.id == customer_id;
+  
+  Tx = SELECT t FROM Cust:s -(PERFORMED>)-> Transaction:t
+       WHERE t.amount >= 5000 AND t.amount < 10000;
+  
+  PRINT Tx;
+}
+
+CREATE QUERY get_shared_device_cluster(STRING device_id) FOR GRAPH FraudInvestigation {
+  Seed = {Device.*};
+  Dev = SELECT s FROM Seed:s WHERE s.id == device_id;
+  
+  Tx = SELECT t FROM Dev:s -(<USED_DEVICE)- Transaction:t;
+  Cust = SELECT c FROM Tx:s -(<PERFORMED)- Customer:c;
+  
+  PRINT Dev;
+  PRINT Tx;
+  PRINT Cust;
+}
+
+CREATE QUERY get_3hop_subgraph(STRING start_entity_id, STRING entity_type) FOR GRAPH FraudInvestigation {
+  Seed = {};
+  
+  IF entity_type == "Customer" THEN
+      Seed = {Customer.*};
+  ELSE IF entity_type == "Transaction" THEN
+      Seed = {Transaction.*};
+  ELSE IF entity_type == "Card" THEN
+      Seed = {Card.*};
+  ELSE IF entity_type == "Device" THEN
+      Seed = {Device.*};
+  END;
+  
+  Start = SELECT s FROM Seed:s WHERE s.id == start_entity_id;
+  
+  Hop1 = SELECT t FROM Start:s -(_)- :t;
+  Hop2 = SELECT t FROM Hop1:s -(_)- :t;
+  Hop3 = SELECT t FROM Hop2:s -(_)- :t;
+  
+  PRINT Start;
+  PRINT Hop1;
+  PRINT Hop2;
+  PRINT Hop3;
+}
+
+CREATE QUERY get_prior_cases_by_entity(STRING entity_id) FOR GRAPH FraudInvestigation {
+  // Check Customer
+  SeedCust = {Customer.*};
+  Cust = SELECT s FROM SeedCust:s WHERE s.id == entity_id;
+  Cases1 = SELECT c FROM Cust:s -(<INVOLVES_CUSTOMER)- ClosedCase:c;
+  
+  // Check Card
+  SeedCard = {Card.*};
+  CardSet = SELECT s FROM SeedCard:s WHERE s.id == entity_id;
+  Cases2 = SELECT c FROM CardSet:s -(<INVOLVES_CARD)- ClosedCase:c;
+  
+  PRINT Cases1;
+  PRINT Cases2;
+}
+
+CREATE QUERY detect_card_testing_sequence(STRING card_id) FOR GRAPH FraudInvestigation {
+  Seed = {Card.*};
+  CardSet = SELECT s FROM Seed:s WHERE s.id == card_id;
+  
+  Tx = SELECT t FROM CardSet:s -(<USED_CARD)- Transaction:t
+       WHERE t.amount < 5.0;
+       
+  PRINT Tx;
+}
+
+CREATE QUERY write_case_to_graph(STRING case_id, STRING case_data) FOR GRAPH FraudInvestigation {
+  INSERT INTO InvestigationCase (PRIMARY_ID, status) VALUES (case_id, case_data);
+  PRINT "Case written to TigerGraph" AS Status;
+}
+
+INSTALL QUERY ALL
